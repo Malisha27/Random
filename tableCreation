@@ -1,0 +1,39 @@
+import customtkinter as ctk
+
+# Initialize the main window
+root = ctk.CTk()
+
+# Create a custom frame with a border for the left sideon
+frame_left = ctk.CTkFrame(root, width=300, height=250, corner_radius=10, border_width=2, border_color="black")
+frame_left.grid(row=0, column=0, padx=10, pady=20)  # Place on the left side with minimal padding
+tion 
+# Create 3 columns and 5 rows of entry widgets for the left frame with smaller width
+entries_left = []
+for row in range(5):
+    entry_row = []
+    for col in range(3):
+        entry = ctk.CTkEntry(frame_left, placeholder_text=f"Row {row+1}, Col {col+1}", border_width=1, border_color="gray", width=100)  # Reduced width to 100
+        entry.grid(row=row, column=col, padx=5, pady=5, sticky="nsew")  # Place entry in grid
+        entry_row.append(entry)
+    entries_left.append(entry_ro
+
+# Create a custom frame with a border for the right side
+frame_right = ctk.CTkFrame(root, width=300, height=250, corner_radius=10, border_width=2, border_color="black")
+frame_right.grid(row=0, column=1, padx=10, pady=20)  # Place on the right side with minimal padding
+
+# Create 3 columns and 5 rows of entry widgets for the right frame with smaller width
+entries_right = []
+for row in range(5):
+    entry_row = []
+    for col in range(3):
+        entry = ctk.CTkEntry(frame_right, placeholder_text=f"Row {row+1}, Col {col+1}", border_width=1, border_color="gray", width=100)  # Reduced width to 100
+        entry.grid(row=row, column=col, padx=5, pady=5, sticky="nsew")  # Place entry in grid
+        entry_row.append(entry)
+    entries_right.append(entry_row)
+
+# Configure the grid columns to expand proportionally
+root.grid_columnconfigure(0, weight=1)  # Left column
+root.grid_columnconfigure(1, weight=1)  # Right column
+
+# Run the application
+root.mainloop()
