@@ -1,0 +1,75 @@
+import customtkinter as ctk
+from tkinter import PhotoImage
+from PIL import Image, ImageTk
+
+# Function to handle the form submission
+def submit_form():
+    username = entry_username.get()
+    email = entry_email.get()
+    password = entry_password.get()
+    print(f"Username: {username}, Email: {email}, Password: {password}")
+    # You can add code here to handle the form submission, e.g., save to a file or database
+
+# Initialize the window
+root = ctk.CTk()
+
+# Create three frames side by side with different border colors
+frame1 = ctk.CTkFrame(root, width=200, height=200, corner_radius=10, border_color="red", border_width=5)
+frame1.grid(row=0, column=0, padx=10, pady=10)
+
+frame2 = ctk.CTkFrame(root, width=300, height=300, corner_radius=10, border_color="blue", border_width=5)
+frame2.grid(row=0, column=1, padx=10, pady=10)
+
+frame3 = ctk.CTkFrame(root, width=200, height=200, corner_radius=10, border_color="green", border_width=5)
+frame3.grid(row=0, column=2, padx=10, pady=10)
+
+# Add widgets to the middle frame (registration form)
+label_title = ctk.CTkLabel(frame2, text="Registration Form", font=("Arial", 16))
+label_title.grid(row=0, column=0, columnspan=2, pady=10)
+
+label_username = ctk.CTkLabel(frame2, text="Username:")
+label_username.grid(row=1, column=0, padx=10, pady=5, sticky="e")
+
+entry_username = ctk.CTkEntry(frame2)
+entry_username.grid(row=1, column=1, padx=10, pady=5)
+
+label_email = ctk.CTkLabel(frame2, text="Email:")
+label_email.grid(row=2, column=0, padx=10, pady=5, sticky="e")
+
+entry_email = ctk.CTkEntry(frame2)
+entry_email.grid(row=2, column=1, padx=10, pady=5)
+
+label_password = ctk.CTkLabel(frame2, text="Password:")
+label_password.grid(row=3, column=0, padx=10, pady=5, sticky="e")
+
+entry_password = ctk.CTkEntry(frame2, show="*")  # show="*" hides the password
+entry_password.grid(row=3, column=1, padx=10, pady=5)
+
+submit_button = ctk.CTkButton(frame2, text="Submit", command=submit_form)
+submit_button.grid(row=4, column=0, columnspan=2, pady=10)
+
+# Load images using Pillow
+image_left = Image.open("download.jpg")  # Replace with your left image path
+image_right = Image.open("download.jpg")  # Replace with your right image path
+
+# Resize images to fit within the frame
+image_left_resized = image_left.resize((200, 100))
+image_right_resized = image_right.resize((200, 100))
+
+# Convert images to a format that tkinter can display
+photo_left = ImageTk.PhotoImage(image_left_resized)
+photo_right = ImageTk.PhotoImage(image_right_resized)
+
+# Add images to the bottom of left and right frames
+label_left_image = ctk.CTkLabel(frame1, image=photo_left)
+label_left_image.grid(row=1, column=0, pady=10)
+
+label_right_image = ctk.CTkLabel(frame3, image=photo_right)
+label_right_image.grid(row=1, column=0, pady=10)
+
+# Keep references to the images to prevent them from being garbage collected
+label_left_image.image = photo_left
+label_right_image.image = photo_right
+
+# Start the Tkinter event loop
+root.mainloop()
